@@ -9,10 +9,12 @@
   "dependencies": {
     "@hono/node-server": "^1.14.3",
     "@prisma/client": "^6.9.0",
+    "bcrypt": "^6.0.0",
     "hono": "^4.7.11",
     "prisma": "^6.9.0"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
     "@types/node": "^20.11.17",
     "tsx": "^4.7.1",
     "typescript": "^5.8.3"

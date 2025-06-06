@@ -1,5 +1,6 @@
 import { Hono } from 'hono'
 import * as taskController from './Controllers/Task.js'
+import * as userController from './Controllers/User.js'
 
 const routes = new Hono()
 
@@ -13,9 +14,9 @@ routes
 
 
 
-// User
+// User Controller
 routes
-  .post('/login', async (c) => undefined)
+  .post('/login', async (c) => userController.register(c))
   .post('/register', async (c) => undefined)
   .post('/logout', async (c) => undefined)
 
