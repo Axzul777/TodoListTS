@@ -1,26 +1,7 @@
-import { type Context, Hono } from 'hono'
-import { PrismaClient } from '../generated/prisma/index.js'
+import { type Context } from 'hono'
+import { PrismaClient } from '../../generated/prisma/index.js'
 
-
-const routes = new Hono()
 const prisma = new PrismaClient()
-
-// CRUD
-routes
-  .get('/', async (c) => show(c))
-  .get('/show', async (c) => show(c))
-  .post('/new', async (c) => create(c))
-  .delete("/delete/:id", async (c) => delete_task(c))
-
-// User Registration and login
-
-routes
-  .post('/login', async (c) => register(c))
-  .post('/register', async (c) => undefined)
-  .post('/logout', async (c) => undefined)
-
-
-
 
 async function show(c: Context) {
   const data = await prisma.task.findMany()
@@ -45,7 +26,7 @@ async function create(c: Context) {
   }
 }
 
-async function delete_task(c: Context) {
+async function remove(c: Context) {
   const param = c.req.param("id")
 
   if (!param) {
@@ -63,9 +44,7 @@ async function delete_task(c: Context) {
   }
 }
 
-async function register(c: Context) {
-  const user_data = c.req.json()
-}
 
-
-export const HonoRoutes = routes
+export {
+    create, remove, show
+};
