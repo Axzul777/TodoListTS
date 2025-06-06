@@ -5,17 +5,17 @@ import bcrypt from 'bcrypt'
 const prisma = new PrismaClient()
 
 async function register(c: Context) {
-    const { user, email, password } = await c.req.json()
+    const { name, email, password } = await c.req.json()
 
-    if (!user || !email || !password) {
+    if (!name || !email || !password) {
         return c.json({error: "Missing Fields"}, 400)
     }
 
     const hashedPassword = await bcrypt.hash(password, 10)
 
     try {
-        prisma.user.create({data: {
-            name: user,
+        await prisma.user.create({data: {
+            name: name,
             email: email,
             password: hashedPassword,
         }})
@@ -26,13 +26,32 @@ async function register(c: Context) {
     }
 }
 
-async function login() {
-    undefined
+async function login(c: Context) {
+    const { name, password } = await c.req.json()
+
+    if (!name || !password) {
+        return c.json({error: "Missing fields"}, 400)
+    }
+
+
+    const hashedPassword = await prisma.user.findFirst({where: {
+        name: name
+    }, select: {password: true}})
+
+    if (!hashedPassword) {
+        return c.json({error: "Error during loggin atempty"})
+    }
+
+    const correspond = await bcrypt.compare(password, hashedPassword.password)
+
+    if (correspond) {
+        return c.json({success: "Loggin success"})
+    }
 }
 
 
 
 
 export {
-    login, register
+    login, register,
 }

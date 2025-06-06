@@ -16,9 +16,9 @@ routes
 
 // User Controller
 routes
-  .post('/login', async (c) => userController.register(c))
-  .post('/register', async (c) => undefined)
-  .post('/logout', async (c) => undefined)
+  .post('/login',        async (c) => userController.login(c))
+  .post('/register',     async (c) => userController.register(c))
+  .post('/logout',       async (c) => undefined)
 
 
 
