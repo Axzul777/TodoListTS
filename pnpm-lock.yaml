@@ -17,6 +17,9 @@ importers:
       bcrypt:
         specifier: ^6.0.0
         version: 6.0.0
+      dotenv:
+        specifier: ^16.5.0
+        version: 16.5.0
       hono:
         specifier: ^4.7.11
         version: 4.7.11
@@ -235,6 +238,10 @@ packages:
     resolution: {integrity: sha512-cU8v/EGSrnH+HnxV2z0J7/blxH8gq7Xh2JFT6Aroax7UohdmiJJlxApMxtKfuI7z68NvvVcmR78k2LbT6efhRg==}
     engines: {node: '>= 18'}
 
+  dotenv@16.5.0:
+    resolution: {integrity: sha512-m/C+AwOAr9/W1UOIZUo232ejMNnJAJtYQjUbHoNTBNTJSvqzzDh7vnrei3o3r3m9blf6ZoDkvcw0VmozNRFJxg==}
+    engines: {node: '>=12'}
+
   esbuild@0.25.5:
     resolution: {integrity: sha512-P8OtKZRv/5J5hhz0cUAdu/cLuPIKXpQl1R9pZtvmHWQvrAUVd0UNIPT4IB4W3rNOqVO0rlqHmCIbSwxh/c9yUQ==}
     engines: {node: '>=18'}
@@ -413,6 +420,8 @@ snapshots:
     dependencies:
       node-addon-api: 8.3.1
       node-gyp-build: 4.8.4
+
+  dotenv@16.5.0: {}
 
   esbuild@0.25.5:
     optionalDependencies:
